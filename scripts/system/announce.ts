@@ -78,6 +78,8 @@ events.levelTick.on(ev=>{
         const hour = date.getHours();
         const min = date.getMinutes();
 
+        bedrockServer.executeCommand(`say ${hour}`);
+
         _(timeset).forEach((v, i)=>{
             console.log(v);
             if (current === i) return;
