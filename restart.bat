@@ -1,5 +1,7 @@
 :start
 @cmd /C "%~dp0\bdsx.bat"
 
-timeout 3
+git pull origin main
+
+timeout 1
 goto start
