@@ -10,29 +10,6 @@ interface timeData {
 
 const timeset:timeData[] = [];
 
-let tick = 0;
-let current = 0;
-events.levelTick.on(ev=>{
-    tick++;
-
-    if (tick >= 2) {
-        tick = 0;
-
-        const date = new Date();
-        const hour = date.getHours();
-        const min = date.getMinutes();
-
-        _(timeset).forEach((v, i)=>{
-            if (current === i) return;
-            if (v.time !== hour || v.minute !== min) return;
-
-            _(bedrockServer.level.getPlayers()).forEach((p)=>{
-                p.sendToastRequest("§7시간표 알림", `§f${v.display}`);
-            });
-        });
-    }
-});
-
 timeset.push(
     {
         time: 8,
@@ -88,3 +65,29 @@ for (let i = 0; i < 2; i++) {
         }
     );
 }
+
+let tick = 0;
+let current = 0;
+events.levelTick.on(ev=>{
+    tick++;
+
+    if (tick >= 2) {
+        tick = 0;
+
+        const date = new Date();
+        const hour = date.getHours();
+        const min = date.getMinutes();
+
+        _(timeset).forEach((v, i)=>{
+            console.log(v);
+            if (current === i) return;
+            if (v.time !== hour || v.minute !== min) return;
+
+            _(bedrockServer.level.getPlayers()).forEach((p)=>{
+                p.sendToastRequest("§7시간표 알림", `§f${v.display}`);
+            });
+
+            current = i;
+        });
+    }
+});
