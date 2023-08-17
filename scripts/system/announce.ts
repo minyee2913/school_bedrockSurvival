@@ -75,8 +75,13 @@ events.levelTick.on(ev=>{
         tick = 0;
 
         const date = new Date();
-        const hour = date.getHours();
-        const min = date.getMinutes();
+
+        const utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        const kr_date = new Date(utc + (KR_TIME_DIFF));
+
+        const hour = kr_date.getHours();
+        const min = kr_date.getMinutes();
 
         bedrockServer.executeCommand(`say ${hour}`);
 
