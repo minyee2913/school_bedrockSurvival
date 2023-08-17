@@ -26,6 +26,8 @@ if %errorlevel% equ 2 (
     goto _end
 )
 
+git pull origin main
+
 rem launch
 cd bedrock_server
 bedrock_server.exe ..
