@@ -28,12 +28,12 @@ for (let i = 0; i < 4; i++) {
         {
             time: 8 + i,
             minute: 40,
-            display: `${i}교시가 시작되었습니다.`
+            display: `${i + 1}교시가 시작되었습니다.`
         },
         {
             time: 9 + i,
             minute: 30,
-            display: `${i}교시가 끝났습니다.`
+            display: `${i + 1}교시가 끝났습니다.`
         }
     );
 }
