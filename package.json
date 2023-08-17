@@ -20,10 +20,10 @@
         "pdbcachegen": "bedrock_server\\pdbcachegen.exe \"./bedrock_server/bedrock_server.exe\" \"./bedrock_server/pdbcache.bin\""
     },
     "dependencies": {
-        "@types/node-schedule": "^2.1.0",
         "bdsx": "file:bdsx",
         "blessed": "^0.1.81",
         "colors": "1.4.0 || ^1.4.3",
+        "cron-parser": "^4.0.0",
         "eslist": "^1.0.0-beta.1",
         "follow-redirects": "^1.14.7",
         "glob": "^7.2.0",

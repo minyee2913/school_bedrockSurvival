@@ -1,64 +1,90 @@
 import { bedrockServer } from "bdsx/launcher";
-import { command } from "../../bdsx/command";
 import * as _ from "lodash";
-import * as schedule from "node-schedule";
 import { events } from "bdsx/event";
 
-const jobs: schedule.Job[] = [];
-
-jobs[0] = schedule.scheduleJob("* 30 8 * *", ()=>{
-    _(bedrockServer.level.getPlayers()).forEach((player)=>{
-        player.sendToastRequest("§7시간표 알림", "10분 동안 조회 시간입니다.");
-    });
-});
-
-let time = 1;
-for (let i = 1; i <= 8; i+=2) {
-    jobs[i] = schedule.scheduleJob(`* 30 ${7 + time} * *`, ()=>{
-        _(bedrockServer.level.getPlayers()).forEach((player)=>{
-            player.sendToastRequest("§7시간표 알림", "10분 동안 조회 시간입니다.");
-        });
-    });
-
-    jobs[i + 1] = schedule.scheduleJob(`* 40 ${7 + time} * *`, ()=>{
-        _(bedrockServer.level.getPlayers()).forEach((player)=>{
-            player.sendToastRequest("§7시간표 알림", `${time}교시가 시작됩니다.`);
-        });
-    });
-
-    time++;
+interface timeData {
+    time: number;
+    minute: number;
+    display: string;
 }
 
-jobs[jobs.length] = schedule.scheduleJob(`* 30 12 * *`, ()=>{
-    _(bedrockServer.level.getPlayers()).forEach((player)=>{
-        player.sendToastRequest("§7시간표 알림", "10분 동안 조회 시간입니다.");
-    });
+const timeset:timeData[] = [];
+
+let tick = 0;
+let current = 0;
+events.levelTick.on(ev=>{
+    tick++;
+
+    if (tick >= 2) {
+        tick = 0;
+
+        const date = new Date();
+        const hour = date.getHours();
+        const min = date.getMinutes();
+
+        _(timeset).forEach((v, i)=>{
+            if (current === i) return;
+            if (v.time !== hour || v.minute !== min) return;
+
+            _(bedrockServer.level.getPlayers()).forEach((p)=>{
+                p.sendToastRequest("§7시간표 알림", `§f${v.display}`);
+            });
+        });
+    }
 });
 
-jobs[jobs.length] = schedule.scheduleJob(`* 30 13 * *`, ()=>{
-    _(bedrockServer.level.getPlayers()).forEach((player)=>{
-        player.sendToastRequest("§7시간표 알림", "10분 동안 조회 시간입니다.");
-    });
-});
+timeset.push(
+    {
+        time: 8,
+        minute: 30,
+        display: "아침 조회가 시작되었습니다."
+    },
+    {
+        time: 8,
+        minute: 39,
+        display: "아침 조회가 곧 끝납니다."
+    }
+);
 
-for (let i = 1; i <= 4; i+=2) {
-    jobs[6 + i] = schedule.scheduleJob(`* 30 ${9 + time} * *`, ()=>{
-        _(bedrockServer.level.getPlayers()).forEach((player)=>{
-            player.sendToastRequest("§7시간표 알림", "10분 동안 조회 시간입니다.");
-        });
-    });
-
-    jobs[i + 7] = schedule.scheduleJob(`* 40 ${9 + time} * *`, ()=>{
-        _(bedrockServer.level.getPlayers()).forEach((player)=>{
-            player.sendToastRequest("§7시간표 알림", `${time}교시가 시작됩니다.`);
-        });
-    });
-
-    time++;
+for (let i = 0; i < 4; i++) {
+    timeset.push(
+        {
+            time: 8 + i,
+            minute: 40,
+            display: `${i}교시가 시작되었습니다.`
+        },
+        {
+            time: 9 + i,
+            minute: 30,
+            display: `${i}교시가 끝났습니다.`
+        }
+    );
 }
 
-events.serverLeave.on(()=>{
-    jobs.forEach((v)=>{
-        v.cancel();
-    });
-});
+timeset.push(
+    {
+        time: 12,
+        minute: 30,
+        display: "점심 시간이 시작되었습니다."
+    },
+    {
+        time: 13,
+        minute: 29,
+        display: "점심 시간이 곧 끝납니다."
+    }
+);
+
+for (let i = 0; i < 2; i++) {
+    timeset.push(
+        {
+            time: 13 + i,
+            minute: 30,
+            display: `${5 + i}교시가 시작되었습니다.`
+        },
+        {
+            time: 14 + i,
+            minute: 20,
+            display: `${5 + i}교시가 끝났습니다.`
+        }
+    );
+}
