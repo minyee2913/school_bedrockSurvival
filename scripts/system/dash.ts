@@ -27,6 +27,9 @@ events.playerJoin.on((ev)=>{
             }
         }
     );
+
+    ev.player.sendInventory();
+    item.destruct();
 });
 
 events.itemUse.on((ev)=>{
