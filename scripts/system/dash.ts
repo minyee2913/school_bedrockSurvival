@@ -8,15 +8,7 @@ import { ServerPlayer } from "bdsx/bds/player";
 
 const cooldown = Symbol("dashCooldown");
 
-events.playerJoin.on((ev)=>{
-    apply(ev.player);
-});
-
-events.playerRespawn.on((ev)=>{
-    apply(ev.player);
-});
-
-function apply(player: ServerPlayer) {
+export function applyDash(player: ServerPlayer) {
     const slot = player.getInventory().container.getSlots().get(8);
 
     const item = ItemStack.constructWith("minecraft:paper", 1);
