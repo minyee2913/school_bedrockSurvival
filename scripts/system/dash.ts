@@ -47,6 +47,10 @@ events.itemUse.on((ev)=>{
         return;
     }
 
+    ev.player.runCommand(`damage @e[r=3,name=!"${ev.player.getName()}"] 4 projectile entity @s`);
+
+    ev.player.runCommand("particle minecraft:knockback_roar_particle ~ ~1 ~");
+
     ev.player.runCommand("playsound item.trident.riptide_3 @a[r=20] ~ ~ ~");
     ev.player.runCommand("effect @s resistance 1 255 true");
 
