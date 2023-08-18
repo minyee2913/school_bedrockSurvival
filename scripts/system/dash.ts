@@ -1,5 +1,5 @@
 import { ItemStack } from "bdsx/bds/inventory";
-import { NBT } from "bdsx/bds/nbt";
+import { ByteTag, CompoundTag, NBT } from "bdsx/bds/nbt";
 import { events } from "bdsx/event";
 import { calcFacingPos } from "../api/facing";
 import { hookEvents } from "../api/hooking/events";
@@ -43,6 +43,13 @@ function apply(player: ServerPlayer) {
 }
 
 events.itemUse.on((ev)=>{
+    const tag = ev.itemStack.allocateAndSave();
+
+    const dash = tag.get<CompoundTag>("tag")?.get<ByteTag>("dash")?.data;
+    tag.dispose();
+
+    if (dash !== 1) return;
+
     if ((ev.player as any)[cooldown] > 0) {
         ev.player.sendMessage(`§7재사용까지... §a${Math.floor((ev.player as any)[cooldown] / 2) / 10}s`);
         return;
