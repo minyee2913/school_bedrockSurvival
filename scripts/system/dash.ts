@@ -51,7 +51,7 @@ events.itemUse.on((ev)=>{
     ev.player.runCommand("effect @s resistance 1 255 true");
 
     if (ev.player.getRotation().x < -60) {
-        ev.player.knockback(ev.player, 0, 0, 0, 6, 7, 8);
+        ev.player.knockback(ev.player, 0, 0, 0, 6, 2, 3);
         ev.player.runCommand("effect @s slow_falling 1 0 true");
     } else {
         const actorPos = ev.player.getFeetPos();
