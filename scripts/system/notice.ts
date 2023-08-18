@@ -1,18 +1,14 @@
 import { Form } from "bdsx/bds/form";
 import { events } from "bdsx/event";
 import { Disconnect } from "../api/disconnect";
+import { ServerPlayer } from "bdsx/bds/player";
 
 events.playerJoin.on((ev)=>{
     setTimeout(async ()=>{
         if (!ev.player.ctxbase.isValid()) return;
 
         if (ev.player.hasTag("alreadyJoin")) {
-            const result = await Form.sendTo(ev.player.getNetworkIdentifier(), {
-                type: "form",
-                title: "§l학교 공지",
-                content: "<unknown>",
-                buttons: [],
-            });
+            Notice(ev.player);
 
         } else {
             ev.player.addTag("alreadyJoin");
@@ -32,3 +28,12 @@ events.playerJoin.on((ev)=>{
         }
     }, 500);
 });
+
+export async function Notice(player: ServerPlayer) {
+    const result = await Form.sendTo(player.getNetworkIdentifier(), {
+        type: "form",
+        title: "§l학교 공지",
+        content: "<unknown>",
+        buttons: [],
+    });
+}

@@ -11,10 +11,10 @@ export async function shopMenu(player: ServerPlayer) {
         content: "",
         buttons: [
             {
-                text: "§l대쉬\n§b보유함",
+                text: "대쉬\n§7보유함",
             },
             {
-                text: "§l인벤토리 보호 (30s)\n§b다이아몬드 1개",
+                text: "인벤토리 보호 (30s)\n§b다이아몬드 1개",
             },
         ],
     });

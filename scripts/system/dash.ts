@@ -48,11 +48,17 @@ events.itemUse.on((ev)=>{
     }
 
     ev.player.runCommand("playsound item.trident.riptide_3 @a[r=20] ~ ~ ~");
+    ev.player.runCommand("effect @s resistance 1 255 true");
 
-    const actorPos = ev.player.getFeetPos();
-    const facePos = calcFacingPos(ev.player, -2);
+    if (ev.player.getRotation().x < -60) {
+        ev.player.knockback(ev.player, 0, 0, 0, 6, 7, 8);
+        ev.player.runCommand("effect @s slow_falling 1 0 true");
+    } else {
+        const actorPos = ev.player.getFeetPos();
+        const facePos = calcFacingPos(ev.player, -2);
 
-    ev.player.knockback(ev.player, 0, facePos.x - actorPos.x, facePos.z - actorPos.z, 8, 0.1, 0.1);
+        ev.player.knockback(ev.player, 0, facePos.x - actorPos.x, facePos.z - actorPos.z, 8, 0.1, 0.1);
+    }
 
     (ev.player as any)[cooldown] = 20;
 });
@@ -60,5 +66,6 @@ events.itemUse.on((ev)=>{
 hookEvents.playerTick.on((ev)=>{
     if ((ev.player as any)[cooldown] > 0) (ev.player as any)[cooldown]--;
 
-    bedrockServer.executeCommand("kill @e[type=item,name=\"§l대쉬\"");
+    bedrockServer.executeCommand("kill @e[type=item,name=\"§l대쉬\"]");
+    bedrockServer.executeCommand("kill @e[type=item,name=\"§l서버 탐색기\"]");
 });
