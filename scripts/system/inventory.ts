@@ -27,7 +27,7 @@ events.entityDie.on((ev)=>{
 events.itemUse.on((ev)=>{
     const tag = ev.itemStack.allocateAndSave();
 
-    const dash = tag.get<CompoundTag>("tag")?.get<ByteTag>("dash")?.data;
+    const dash = tag.get<CompoundTag>("tag")?.get<ByteTag>("protect")?.data;
     tag.dispose();
 
     if (dash !== 1) return;
