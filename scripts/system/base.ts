@@ -14,7 +14,7 @@ command.register("console", "콘솔 관련 명령을 실행합니다.", CommandP
         player.sendMessage("§7/console help - 이 도움말을 엽니다.\n/console command <string> - 콘솔을 주체로 명령어를 실행합니다.\n/console stop - 서버를 닫습니다 (배치 파일에 의해 재시작됨)\n/console bash <string> - 배치파일 명령을 실행합니다.");
     } else if (p.enums_ === "command") {
         if (arg) {
-            bedrockServer.executeCommandOnConsole(arg);
+            bedrockServer.executeCommand(arg);
 
             player.sendMessage("§6명령을 실행했습니다.");
         } else {
