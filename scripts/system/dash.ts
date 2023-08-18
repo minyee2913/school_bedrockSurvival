@@ -3,6 +3,7 @@ import { NBT } from "bdsx/bds/nbt";
 import { events } from "bdsx/event";
 import { calcFacingPos } from "../api/facing";
 import { hookEvents } from "../api/hooking/events";
+import { bedrockServer } from "bdsx/launcher";
 
 const cooldown = Symbol("dashCooldown");
 
@@ -50,4 +51,6 @@ events.itemUse.on((ev)=>{
 
 hookEvents.playerTick.on((ev)=>{
     if ((ev.player as any)[cooldown] > 0) (ev.player as any)[cooldown]--;
+
+    bedrockServer.executeCommand("kill @e[type=item,name=\"§l대쉬\"");
 });
