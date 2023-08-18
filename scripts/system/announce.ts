@@ -99,6 +99,10 @@ events.levelTick.on(ev=>{
         const hour = kr_date.getHours();
         const min = kr_date.getMinutes();
 
+        const minecraftTime = (kr_date.getHours() * 60 + kr_date.getMinutes()) / 60 * 1000 - 6000;
+        bedrockServer.executeCommand("/time add -24000");
+        bedrockServer.executeCommand("/time set " + minecraftTime);
+
         _(bedrockServer.level.getPlayers()).forEach((p)=>{
             const sidebar = Sidebar.get(p);
 
