@@ -7,6 +7,7 @@ interface timeData {
     time: number;
     minute: number;
     display: string;
+    sign: string;
 }
 
 const timeset:timeData[] = [];
@@ -15,12 +16,14 @@ timeset.push(
     {
         time: 8,
         minute: 30,
-        display: "아침 조회가 시작되었습니다."
+        display: "아침 조회가 시작되었습니다.",
+        sign: "조회 시간",
     },
     {
         time: 8,
         minute: 39,
-        display: "아침 조회가 곧 끝납니다."
+        display: "아침 조회가 곧 끝납니다.",
+        sign: "조회 시간",
     }
 );
 
@@ -29,12 +32,14 @@ for (let i = 0; i < 4; i++) {
         {
             time: 8 + i,
             minute: 40,
-            display: `${i + 1}교시가 시작되었습니다.`
+            display: `${i + 1}교시가 시작되었습니다.`,
+            sign: `${i + 1}교시`,
         },
         {
             time: 9 + i,
             minute: 30,
-            display: `${i + 1}교시가 끝났습니다.`
+            display: `${i + 1}교시가 끝났습니다.`,
+            sign: "쉬는 시간"
         }
     );
 }
@@ -43,12 +48,14 @@ timeset.push(
     {
         time: 12,
         minute: 30,
-        display: "점심 시간이 시작되었습니다."
+        display: "점심 시간이 시작되었습니다.",
+        sign: "점심 시간"
     },
     {
         time: 13,
         minute: 29,
-        display: "점심 시간이 곧 끝납니다."
+        display: "점심 시간이 곧 끝납니다.",
+        sign: "점심 시간"
     }
 );
 
@@ -57,12 +64,14 @@ for (let i = 0; i < 2; i++) {
         {
             time: 13 + i,
             minute: 30,
-            display: `${5 + i}교시가 시작되었습니다.`
+            display: `${5 + i}교시가 시작되었습니다.`,
+            sign: `${5 + i}교시`
         },
         {
             time: 14 + i,
             minute: 20,
-            display: `${5 + i}교시가 끝났습니다.`
+            display: `${5 + i}교시가 끝났습니다.`,
+            sign: "쉬는 시간"
         }
     );
 }
@@ -97,6 +106,10 @@ events.levelTick.on(ev=>{
             sidebar.setElement(1, 1, `§f현재 시간: §7${hour}시 ${min}분`);
             sidebar.setElement(2, 2, `§a`);
             sidebar.setElement(3, 3, `§a(${bedrockServer.level.getActivePlayerCount()} / 20) online`);
+
+            sidebar.removeElement(0);
+            if (hour < 17 && hour >= 8)
+                if (current >= 0) sidebar.setElement(0, 0, timeset[current].sign);
         });
 
         _(timeset).forEach((v, i)=>{
