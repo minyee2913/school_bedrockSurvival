@@ -45,7 +45,7 @@ events.itemUse.on((ev)=>{
 
     ev.player.knockback(ev.player, 0, facePos.x - actorPos.x, facePos.z - actorPos.z, 8, 0.1, 0.1);
 
-    (ev.player as any)[cooldown] = 30;
+    (ev.player as any)[cooldown] = 20;
 });
 
 hookEvents.playerTick.on((ev)=>{
