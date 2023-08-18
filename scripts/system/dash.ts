@@ -4,11 +4,20 @@ import { events } from "bdsx/event";
 import { calcFacingPos } from "../api/facing";
 import { hookEvents } from "../api/hooking/events";
 import { bedrockServer } from "bdsx/launcher";
+import { ServerPlayer } from "bdsx/bds/player";
 
 const cooldown = Symbol("dashCooldown");
 
 events.playerJoin.on((ev)=>{
-    const slot = ev.player.getInventory().container.getSlots().get(8);
+    apply(ev.player);
+});
+
+events.playerRespawn.on((ev)=>{
+    apply(ev.player);
+});
+
+function apply(player: ServerPlayer) {
+    const slot = player.getInventory().container.getSlots().get(8);
 
     const item = ItemStack.constructWith("minecraft:paper", 1);
     if (!item) return;
@@ -23,15 +32,15 @@ events.playerJoin.on((ev)=>{
             tag: {
                 "minecraft:item_lock": NBT.byte(1),
                 ...nbt.tag,
-                xuid: ev.player.getXuid(),
+                xuid: player.getXuid(),
                 dash: NBT.byte(1),
             }
         }
     );
 
-    ev.player.sendInventory();
+    player.sendInventory();
     item.destruct();
-});
+}
 
 events.itemUse.on((ev)=>{
     if ((ev.player as any)[cooldown] > 0) {
