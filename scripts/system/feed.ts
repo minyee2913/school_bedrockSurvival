@@ -89,6 +89,7 @@ export async function writeFeed(player: ServerPlayer): Promise<void> {
     if (title === "" || context === "") {
         player.sendMessage("§c공백? 장난해?");
 
+        writeFeed(player);
         return;
     }
 
@@ -121,21 +122,63 @@ export async function onFeed(player: ServerPlayer, uuid: string): Promise<void> 
                 text: `§l댓글 보기 §a[${feed.comment.length}]`,
             },
             {
+                text: `§l댓글 쓰기`,
+            },
+            {
                 text: "§l돌아가기",
             }
         ],
     });
 
-    if (result === null || result === 1) return FeedScreen(player);
+    if (result === null || result === 2) return FeedScreen(player);
 
     feedComment(player, uuid);
+}
+
+export async function writeComment(player: ServerPlayer, uuid: string): Promise<void> {
+    const result = await Form.sendTo(player.getNetworkIdentifier(), {
+        type: "custom_form",
+        title: "§l댓글 작성",
+        content: [
+            {
+                type: "input",
+                placeholder: "입력하세요.",
+                text: "내용 ( \n으로 줄바꿈, $pos로 현재 좌표 입력 )",
+            },
+        ],
+    });
+
+    if (result === null) return onFeed(player, uuid);
+
+    const [comment] = result;
+    if (comment === "") {
+        player.sendMessage("§c공백? 장난해?");
+
+        writeComment(player, uuid);
+        return;
+    }
+
+    const feed = feeds.get({uuid: uuid});
+    if (!feed) return;
+
+    const pos = player.getFeetPos();
+
+    feed.comment.unshift(
+        {
+            writer: player.getName(),
+            text: comment.replace(/\\n/gi, "\n").replace(/\$pos/gi, `${pos.x} ${pos.y} ${pos.z}`),
+        }
+    )
+
+    player.sendMessage("§6작성완료!");
+    player.runCommand("playsound random.levelup @s ~ ~ ~");
+
+    onFeed(player, uuid);
 }
 
 export async function feedComment(player: ServerPlayer, uuid: string): Promise<void> {
     const feed = feeds.get({uuid: uuid});
     if (!feed) return;
-
-    const pos = player.getFeetPos();
 
     const comments:string[] = [];
 
