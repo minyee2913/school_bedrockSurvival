@@ -17,15 +17,12 @@ const localfile = path.dirname(__filename) + "\\files";
 function iireadFiles(): void {
     readdir(localfile, (err, file) => {
         notices.clear();
-        file.forEach((v) => {
-            const fls = readdirSync(localfile + "/" + v);
-            fls.forEach((x) => {
-                const js = JSON.parse(readFileSync(localfile + "/" + v + "/" + x, "utf8"));
+            file.forEach((x) => {
+                const js = JSON.parse(readFileSync(localfile + "/" + x, "utf8"));
                 if (x.endsWith(".json")) {
                     notices.set(x.replace(".json", ""), js);
                 }
             });
-        });
     });
 }
 
