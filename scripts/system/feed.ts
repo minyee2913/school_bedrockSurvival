@@ -132,6 +132,8 @@ export async function onFeed(player: ServerPlayer, uuid: string): Promise<void> 
 
     if (result === null || result === 2) return FeedScreen(player);
 
+    if (result === 1) writeComment(player, uuid);
+
     feedComment(player, uuid);
 }
 
