@@ -132,7 +132,7 @@ export async function onFeed(player: ServerPlayer, uuid: string): Promise<void> 
 
     if (result === null || result === 2) return FeedScreen(player);
 
-    if (result === 1) writeComment(player, uuid);
+    if (result === 1) return writeComment(player, uuid);
 
     feedComment(player, uuid);
 }
@@ -174,6 +174,8 @@ export async function writeComment(player: ServerPlayer, uuid: string): Promise<
 
     player.sendMessage("§6작성완료!");
     player.runCommand("playsound random.levelup @s ~ ~ ~");
+
+    feeds.update({comment: feed.comment}, {uuid: feed.uuid});
 
     onFeed(player, uuid);
 }
