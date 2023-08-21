@@ -7,3 +7,4 @@ import "./inventory";
 import "./init";
 import "./feed";
 import "./lunch";
+import "./timetable";

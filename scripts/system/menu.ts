@@ -8,6 +8,7 @@ import { shopMenu } from "./shop";
 import { Notice } from "./notice";
 import { FeedScreen } from "./feed";
 import { lunchScreen } from "./lunch";
+import { timeScreen } from "./timetable";
 
 export function applyMenu(player: ServerPlayer) {
     const slot = player.getInventory().container.getSlots().get(7);
@@ -64,6 +65,9 @@ events.itemUse.on(async (ev)=>{
             {
                 text: "§l오늘 급식",
             },
+            {
+                text: "§l시간표",
+            },
         ],
     });
 
@@ -81,5 +85,9 @@ events.itemUse.on(async (ev)=>{
 
     else if (result === 3) {
         lunchScreen(ev.player);
+    }
+
+    else if (result === 4) {
+        timeScreen(ev.player);
     }
 });

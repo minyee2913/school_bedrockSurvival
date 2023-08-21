@@ -3,8 +3,6 @@ import { ServerPlayer } from "bdsx/bds/player";
 
 const request = require('request');
 
-const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-
 interface lunch {
     year: string;
     month: number;
