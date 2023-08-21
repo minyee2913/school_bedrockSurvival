@@ -89,7 +89,7 @@ export async function NoticeInfo(player: ServerPlayer, id: string) {
     const result = await Form.sendTo(player.getNetworkIdentifier(), {
         type: "form",
         title: `§l${notice.title} (${notice.month}/${notice.day})`,
-        content: notice.context + "\n\n",
+        content: notice.context + "\n\n§l",
         buttons: [
             {
                 text: "§l돌아가기"

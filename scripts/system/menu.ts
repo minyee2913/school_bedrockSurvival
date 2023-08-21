@@ -5,6 +5,8 @@ import { events } from "bdsx/event";
 import { preventRepeat } from "../api/antirapid";
 import { Form } from "bdsx/bds/form";
 import { shopMenu } from "./shop";
+import { Notice } from "./notice";
+import { FeedScreen } from "./feed";
 
 export function applyMenu(player: ServerPlayer) {
     const slot = player.getInventory().container.getSlots().get(7);
@@ -50,12 +52,26 @@ events.itemUse.on(async (ev)=>{
         content: "",
         buttons: [
             {
+                text: "§l공지",
+            },
+            {
                 text: "§l특수 아이템",
+            },
+            {
+                text: "§l피드 (SNS)",
             },
         ],
     });
 
     if (result === 0) {
+        Notice(ev.player);
+    }
+
+    else if (result === 1) {
         shopMenu(ev.player);
+    }
+
+    else if (result === 2) {
+        FeedScreen(ev.player);
     }
 });
