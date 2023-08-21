@@ -1,6 +1,16 @@
-import axios from "axios";
+import { Form } from "bdsx/bds/form";
+import { ServerPlayer } from "bdsx/bds/player";
+
+const request = require('request');
 
 const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+interface lunch {
+    year: string;
+    month: number;
+    day: number;
+    meal: string[];
+}
 
 function today(): string {
     const date = new Date();
@@ -9,15 +19,35 @@ function today(): string {
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     const kr_date = new Date(utc + (KR_TIME_DIFF));
 
-    const formattedDate = `${kr_date.getFullYear()}년 ${String(kr_date.getMonth() + 1).padStart(2, "0")}월 ${String(kr_date.getDate()).padStart(2, "0")}일`;
-    const dayOfWeek = daysOfWeek[kr_date.getDay()];
-    return `${formattedDate} ${dayOfWeek}요일`;
+    return `${kr_date.getFullYear()}/${kr_date.getMonth() + 1}/${kr_date.getDate()}`;
 }
 
 const dateString = today();
 
-(async () =>{
-    const data = await axios.get(`https://slunch.ny64.kr/api/meals?date=${dateString}`);
-    console.log(data);
+function onLunch(ev: (data: lunch)=> void): void {
+    request.get(`https://sntmeal.misilelaboratory.xyz/${dateString}`, (error: any, response: Record<string, any>, body: string) => {
+        if (error) {
+            console.error('Error:', error);
+            return;
+        } else if (response.statusCode < 200 || response.statusCode >= 300) {
+            console.log("no response ok", response.statusCode);
+            return;
+        } else {
+            const js = JSON.parse(body);
 
-})()
+            ev(js);
+        }
+    });
+}
+
+export function lunchScreen(player: ServerPlayer) {
+    onLunch(async (data)=>{
+        await Form.sendTo(player.getNetworkIdentifier(), {
+            type: "modal",
+            title: `§l급식 ${data.year}/${data.month}/${data.day}`,
+            content: `\n§l§f${data.meal.join(" ")}`,
+            button1: "§l배고프네",
+            button2: "§lㅈ같네"
+        });
+    });
+}

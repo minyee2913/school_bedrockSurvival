@@ -7,6 +7,7 @@ import { Form } from "bdsx/bds/form";
 import { shopMenu } from "./shop";
 import { Notice } from "./notice";
 import { FeedScreen } from "./feed";
+import { lunchScreen } from "./lunch";
 
 export function applyMenu(player: ServerPlayer) {
     const slot = player.getInventory().container.getSlots().get(7);
@@ -60,6 +61,9 @@ events.itemUse.on(async (ev)=>{
             {
                 text: "§l피드 (SNS)",
             },
+            {
+                text: "§l오늘 급식",
+            },
         ],
     });
 
@@ -73,5 +77,9 @@ events.itemUse.on(async (ev)=>{
 
     else if (result === 2) {
         FeedScreen(ev.player);
+    }
+
+    else if (result === 3) {
+        lunchScreen(ev.player);
     }
 });
