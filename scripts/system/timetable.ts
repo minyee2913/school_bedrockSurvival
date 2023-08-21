@@ -13,16 +13,6 @@ interface timetable {
     subject: string;
 }
 
-function today(): string {
-    const date = new Date();
-
-    const utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
-    const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-    const kr_date = new Date(utc + (KR_TIME_DIFF));
-
-    return `${kr_date.getFullYear()}/${kr_date.getMonth() + 1}/${kr_date.getDate()}`;
-}
-
 const classList:string[] = [];
 
 request.get(`https://slunch.ny64.kr/api/timetable/classList`, (error: any, response: Record<string, any>, body: string) => {
@@ -35,11 +25,9 @@ request.get(`https://slunch.ny64.kr/api/timetable/classList`, (error: any, respo
     } else {
         const js = JSON.parse(body);
 
-        classList.push(...js);
+        classList.push(...js.data);
     }
 });
-
-const dateString = today();
 
 function onTimetable(class_: string, ev: (data: timetable[])=> void): void {
     const clsSplit = class_.split("-");
@@ -53,7 +41,7 @@ function onTimetable(class_: string, ev: (data: timetable[])=> void): void {
         } else {
             const js = JSON.parse(body);
 
-            ev(js[0]);
+            ev(js.data);
         }
     });
 }
