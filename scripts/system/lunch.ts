@@ -42,6 +42,7 @@ function onLunch(ev: (data: lunch)=> void): void {
 
 export function lunchScreen(player: ServerPlayer) {
     onLunch(async (data)=>{
+        console.log(data);
         await Form.sendTo(player.getNetworkIdentifier(), {
             type: "modal",
             title: `§l급식 ${data.year}/${data.month}/${data.day}`,
