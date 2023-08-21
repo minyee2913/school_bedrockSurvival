@@ -35,7 +35,7 @@ function onLunch(ev: (data: lunch)=> void): void {
         } else {
             const js = JSON.parse(body);
 
-            ev(js);
+            ev(js[0]);
         }
     });
 }
