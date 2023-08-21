@@ -6,3 +6,4 @@ import "./notice/index";
 import "./inventory";
 import "./init";
 import "./feed";
+import "./lunch";
