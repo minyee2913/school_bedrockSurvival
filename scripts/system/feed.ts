@@ -31,13 +31,6 @@ const feeds = db.createTable(Feed, true);
 export async function FeedScreen(player: ServerPlayer) {
     const buttons: {text: string, uuid: string; }[] = [];
 
-    buttons.unshift(
-        {
-            text: "§3작성하기",
-            uuid: "write",
-        }
-    );
-
     const feds = feeds.values();
     if (feds.length > 60) feds.length = 60;
 
@@ -47,6 +40,13 @@ export async function FeedScreen(player: ServerPlayer) {
             uuid: v.uuid,
         });
     });
+
+    buttons.unshift(
+        {
+            text: "§3작성하기",
+            uuid: "write",
+        }
+    );
 
     const result = await Form.sendTo(player.getNetworkIdentifier(), {
         type: "form",
