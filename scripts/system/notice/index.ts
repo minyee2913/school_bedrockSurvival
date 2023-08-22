@@ -31,6 +31,8 @@ const notices = new Map<string, Notice>();
 iireadFiles();
 
 events.playerJoin.on((ev)=>{
+    iireadFiles();
+
     setTimeout(async ()=>{
         if (!ev.player.ctxbase.isValid()) return;
 

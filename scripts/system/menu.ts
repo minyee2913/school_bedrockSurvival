@@ -16,7 +16,7 @@ export function applyMenu(player: ServerPlayer) {
     const item = ItemStack.constructWith("minecraft:compass", 1);
     if (!item) return;
 
-    item.setCustomName("§7서버 탐색기");
+    item.setCustomName("§l§7서버 탐색기");
 
     const nbt = item.save();
 

@@ -14,7 +14,7 @@ export function applyDash(player: ServerPlayer) {
     const item = ItemStack.constructWith("minecraft:paper", 1);
     if (!item) return;
 
-    item.setCustomName("§7대쉬");
+    item.setCustomName("§l§7대쉬");
 
     const nbt = item.save();
 
