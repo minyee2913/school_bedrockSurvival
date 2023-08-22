@@ -4,6 +4,7 @@ import { MCInventory } from "../api/inventory";
 import { ItemStack } from "bdsx/bds/inventory";
 import { NBT } from "bdsx/bds/nbt";
 import { giveGun } from "./gun";
+import { EnchantUtils } from "bdsx/bds/enchants";
 
 export async function shopMenu(player: ServerPlayer) {
     const result = await Form.sendTo(player.getNetworkIdentifier(), {
@@ -27,7 +28,7 @@ export async function shopMenu(player: ServerPlayer) {
 
     if (result === 1) {
         if (MCInventory.getItemCount(player, "minecraft:diamond") >= 1) {
-            const item = ItemStack.constructWith("minecraft:balloon", 1);
+            const item = ItemStack.constructWith("minecraft:banner_pattern", 1);
 
             item.setCustomName("§l인벤토리 보호 §a(30s)");
             item.setCustomLore(["§r§f사용시 30s동안 인벤토리가 보호됩니다."]);
@@ -43,6 +44,8 @@ export async function shopMenu(player: ServerPlayer) {
                     }
                 }
             );
+
+            EnchantUtils.applyEnchant(item, -1 as any, 1, true);
 
             player.addItem(item);
             player.sendInventory();

@@ -7,6 +7,7 @@ import { calcFacingPos } from "../api/facing";
 import _ = require("lodash");
 import { IsSafe } from "../api/safe";
 import { isMotionBlocking } from "../api/block";
+import { EnchantUtils } from "bdsx/bds/enchants";
 
 interface gun {
     name: string;
@@ -52,6 +53,8 @@ export function giveGun(player: ServerPlayer, id: number): void {
             },
         },
     );
+
+    EnchantUtils.applyEnchant(item, -1 as any, 1, true);
 
     player.addItem(item);
     player.sendInventory();
