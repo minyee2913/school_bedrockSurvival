@@ -23,7 +23,7 @@ function today(): string {
 const dateString = today();
 
 function onLunch(ev: (data: lunch)=> void): void {
-    request.get(`https://sntmeal.misilelaboratory.xyz/${dateString}`, (error: any, response: Record<string, any>, body: string) => {
+    request.get(`https://sntapi.misilelaboratory.xyz/meal/${dateString}`, (error: any, response: Record<string, any>, body: string) => {
         if (error) {
             console.error('Error:', error);
             return;
