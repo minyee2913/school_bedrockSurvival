@@ -15,6 +15,8 @@ events.playerJoin.on((ev)=>{
         if (v.getCustomName().startsWith("§l")) v.setAmount(0);
     });
 
+    ev.player.sendInventory();
+
     applyDash(ev.player);
     applyMenu(ev.player);
 
