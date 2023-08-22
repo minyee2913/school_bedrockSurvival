@@ -3,6 +3,7 @@ import { ServerPlayer } from "bdsx/bds/player";
 import { MCInventory } from "../api/inventory";
 import { ItemStack } from "bdsx/bds/inventory";
 import { NBT } from "bdsx/bds/nbt";
+import { giveGun } from "./gun";
 
 export async function shopMenu(player: ServerPlayer) {
     const result = await Form.sendTo(player.getNetworkIdentifier(), {
@@ -11,10 +12,13 @@ export async function shopMenu(player: ServerPlayer) {
         content: "",
         buttons: [
             {
-                text: "대쉬\n§7보유함",
+                text: "대쉬\n§a보유함",
             },
             {
-                text: "인벤토리 보호 (30s)\n§b다이아몬드 1개",
+                text: "인벤토리 보호 (30s)\n§9다이아몬드 1개",
+            },
+            {
+                text: "돌 딱총\n§9돌 괭이, 화약 1개",
             },
         ],
     });
@@ -49,6 +53,20 @@ export async function shopMenu(player: ServerPlayer) {
             player.runCommand("playsound note.harp @s ~ ~ ~ 0.8");
 
             player.sendMessage("§a인벤토리 보호를 구매했습니다.");
+
+        }
+    }
+
+    else if (result === 2) {
+        if (MCInventory.getItemCount(player, "minecraft:stone_hoe") >= 1 && MCInventory.getItemCount(player, "minecraft:gunpowder") >= 1) {
+
+            player.runCommand("clear @s gunpowder 0 1");
+            player.runCommand("clear @s stone_hoe 0 1");
+            player.runCommand("playsound note.harp @s ~ ~ ~ 0.8");
+
+            giveGun(player, 0);
+
+            player.sendMessage("§a돌 딱총을 구매했습니다.");
 
         }
     }
