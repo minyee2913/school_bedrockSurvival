@@ -1,0 +1,362 @@
+{
+	"file_path": "C:\\Users\\leegm\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\development_behavior_packs\\minyee's test pack\\animation_controllers\\bridge\\commands_player.json",
+	"file_type": "animation_controller",
+	"format_version": 1,
+	"file_uuid": "285416fb_3083_4e6b_97ee_3d81e18291aa",
+	"file_version": 8,
+	"cache_content": {
+		"children": [
+			{
+				"data": "1.10.0",
+				"key": "format_version"
+			},
+			{
+				"open": {
+					"format_version": "1.10.0",
+					"animation_controllers": {
+						"controller.animation.bridge_player.execute_commands": {
+							"states": {
+								"default": {
+									"transitions": [
+										{
+											"execute_command_id_1": "query.skin_id == 1"
+										},
+										{
+											"execute_command_id_2": "query.skin_id == 2"
+										}
+									]
+								},
+								"execute_command_id_1": {
+									"transitions": [
+										{
+											"default": "query.skin_id != 1"
+										}
+									],
+									"on_entry": [
+										"/function healing",
+										"@s bridge:remove_command_id_1"
+									]
+								},
+								"execute_command_id_2": {
+									"transitions": [
+										{
+											"default": "query.skin_id != 2"
+										}
+									],
+									"on_entry": {}
+								}
+							}
+						}
+					}
+				},
+				"key": "animation_controllers",
+				"children": [
+					{
+						"open": {
+							"controller.animation.bridge_player.execute_commands": {
+								"states": {
+									"default": {
+										"transitions": [
+											{
+												"execute_command_id_1": "query.skin_id == 1"
+											},
+											{
+												"execute_command_id_2": "query.skin_id == 2"
+											}
+										]
+									},
+									"execute_command_id_1": {
+										"transitions": [
+											{
+												"default": "query.skin_id != 1"
+											}
+										],
+										"on_entry": [
+											"/function healing",
+											"@s bridge:remove_command_id_1"
+										]
+									},
+									"execute_command_id_2": {
+										"transitions": [
+											{
+												"default": "query.skin_id != 2"
+											}
+										],
+										"on_entry": {}
+									}
+								}
+							}
+						},
+						"key": "controller.animation.bridge_player.execute_commands",
+						"children": [
+							{
+								"open": {
+									"states": {
+										"default": {
+											"transitions": [
+												{
+													"execute_command_id_1": "query.skin_id == 1"
+												},
+												{
+													"execute_command_id_2": "query.skin_id == 2"
+												}
+											]
+										},
+										"execute_command_id_1": {
+											"transitions": [
+												{
+													"default": "query.skin_id != 1"
+												}
+											],
+											"on_entry": [
+												"/function healing",
+												"@s bridge:remove_command_id_1"
+											]
+										},
+										"execute_command_id_2": {
+											"transitions": [
+												{
+													"default": "query.skin_id != 2"
+												}
+											],
+											"on_entry": {}
+										}
+									}
+								},
+								"key": "states",
+								"children": [
+									{
+										"open": {
+											"default": {
+												"transitions": [
+													{
+														"execute_command_id_1": "query.skin_id == 1"
+													},
+													{
+														"execute_command_id_2": "query.skin_id == 2"
+													}
+												]
+											},
+											"execute_command_id_1": {
+												"transitions": [
+													{
+														"default": "query.skin_id != 1"
+													}
+												],
+												"on_entry": [
+													"/function healing",
+													"@s bridge:remove_command_id_1"
+												]
+											},
+											"execute_command_id_2": {
+												"transitions": [
+													{
+														"default": "query.skin_id != 2"
+													}
+												],
+												"on_entry": {}
+											}
+										},
+										"key": "default",
+										"children": [
+											{
+												"open": {
+													"transitions": [
+														{
+															"execute_command_id_1": "query.skin_id == 1"
+														},
+														{
+															"execute_command_id_2": "query.skin_id == 2"
+														}
+													]
+												},
+												"key": "transitions",
+												"children": [
+													{
+														"open": [
+															{
+																"execute_command_id_1": "query.skin_id == 1"
+															},
+															{
+																"execute_command_id_2": "query.skin_id == 2"
+															}
+														],
+														"is_minified": true,
+														"children": {
+															"execute_command_id_1": "query.skin_id == 1"
+														}
+													},
+													{
+														"open": [
+															{
+																"execute_command_id_1": "query.skin_id == 1"
+															},
+															{
+																"execute_command_id_2": "query.skin_id == 2"
+															}
+														],
+														"is_minified": true,
+														"children": {
+															"execute_command_id_2": "query.skin_id == 2"
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"open": {
+											"default": {
+												"transitions": [
+													{
+														"execute_command_id_1": "query.skin_id == 1"
+													},
+													{
+														"execute_command_id_2": "query.skin_id == 2"
+													}
+												]
+											},
+											"execute_command_id_1": {
+												"transitions": [
+													{
+														"default": "query.skin_id != 1"
+													}
+												],
+												"on_entry": [
+													"/function healing",
+													"@s bridge:remove_command_id_1"
+												]
+											},
+											"execute_command_id_2": {
+												"transitions": [
+													{
+														"default": "query.skin_id != 2"
+													}
+												],
+												"on_entry": {}
+											}
+										},
+										"key": "execute_command_id_1",
+										"children": [
+											{
+												"open": {
+													"transitions": [
+														{
+															"default": "query.skin_id != 1"
+														}
+													],
+													"on_entry": [
+														"/function healing",
+														"@s bridge:remove_command_id_1"
+													]
+												},
+												"key": "transitions",
+												"children": [
+													{
+														"open": [
+															{
+																"default": "query.skin_id != 1"
+															}
+														],
+														"is_minified": true,
+														"children": {
+															"default": "query.skin_id != 1"
+														}
+													}
+												]
+											},
+											{
+												"open": {
+													"transitions": [
+														{
+															"default": "query.skin_id != 1"
+														}
+													],
+													"on_entry": [
+														"/function healing",
+														"@s bridge:remove_command_id_1"
+													]
+												},
+												"key": "on_entry",
+												"is_minified": true,
+												"children": [
+													"/function healing",
+													"@s bridge:remove_command_id_1"
+												]
+											}
+										]
+									},
+									{
+										"open": {
+											"default": {
+												"transitions": [
+													{
+														"execute_command_id_1": "query.skin_id == 1"
+													},
+													{
+														"execute_command_id_2": "query.skin_id == 2"
+													}
+												]
+											},
+											"execute_command_id_1": {
+												"transitions": [
+													{
+														"default": "query.skin_id != 1"
+													}
+												],
+												"on_entry": [
+													"/function healing",
+													"@s bridge:remove_command_id_1"
+												]
+											},
+											"execute_command_id_2": {
+												"transitions": [
+													{
+														"default": "query.skin_id != 2"
+													}
+												],
+												"on_entry": {}
+											}
+										},
+										"key": "execute_command_id_2",
+										"children": [
+											{
+												"open": {
+													"transitions": [
+														{
+															"default": "query.skin_id != 2"
+														}
+													],
+													"on_entry": {}
+												},
+												"key": "transitions",
+												"children": [
+													{
+														"open": [
+															{
+																"default": "query.skin_id != 2"
+															}
+														],
+														"is_minified": true,
+														"children": {
+															"default": "query.skin_id != 2"
+														}
+													}
+												]
+											},
+											{
+												"key": "on_entry",
+												"is_minified": true,
+												"children": {}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

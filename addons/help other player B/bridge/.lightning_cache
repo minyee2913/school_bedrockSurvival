@@ -1,0 +1,194 @@
+{
+	"animation_controller": {
+		"BP/animation_controllers/rec.json": {
+			"ids": [
+				"controller.animation.blank"
+			]
+		},
+		"BP/animation_controllers/always.json": {
+			"ids": [
+				"controller.animation.always"
+			]
+		},
+		"BP/animation_controllers/bridge/commands_player.json": {
+			"ids": [
+				"controller.animation.bridge_player.execute_commands"
+			]
+		},
+		"BP/animation_controllers/alive.json": {
+			"ids": [
+				"controller.animation.alive"
+			]
+		},
+		"BP/animation_controllers/info.json": {
+			"ids": [
+				"controller.animation.info"
+			],
+			"custom_commands": []
+		}
+	},
+	"entity": {
+		"BP/entities/player.json": {
+			"events": [
+				"minecraft:gain_bad_omen",
+				"minecraft:clear_add_bad_omen",
+				"minecraft:trigger_raid",
+				"minecraft:remove_raid_trigger",
+				"die",
+				"reset",
+				"heal",
+				"healing",
+				"end_healing"
+			],
+			"custom_components": [],
+			"bridge_core_tags": [],
+			"identifiers": [
+				"minecraft:player"
+			],
+			"animation_references": [
+				"rec",
+				"always",
+				"alive",
+				"info"
+			],
+			"families": [
+				"player"
+			],
+			"custom_commands": []
+		}
+	},
+	"function": {
+		"BP/functions/ek.mcfunction": {
+			"custom_commands": [],
+			"tags": [
+				"t",
+				"w",
+				"o",
+				"d",
+				"ek"
+			]
+		},
+		"BP/functions/always.mcfunction": {
+			"custom_commands": [],
+			"scoreboards": [
+				"reset",
+				"heal",
+				"sta-t-e",
+				"twod",
+				"det"
+			],
+			"tags": [
+				"reset",
+				"twod",
+				"ek",
+				"healing",
+				"heal"
+			]
+		},
+		"BP/functions/healing.mcfunction": {
+			"custom_commands": [],
+			"tags": [
+				"h",
+				"e",
+				"a",
+				"l",
+				"healing"
+			]
+		},
+		"36356146_caa7_4302_afa2_4e9754501188": {},
+		"BP/functions/info.mcfunction": {
+			"custom_commands": []
+		},
+		"f6bf8d31_fd91_4168_8221_6d303cf10632": {}
+	},
+	"client_entity": {
+		"RP/entity/player.entity.json": {
+			"identifiers": [
+				"minecraft:player"
+			],
+			"particle_references": [],
+			"animation_references": [
+				"root",
+				"base_controller",
+				"humanoid_base_pose",
+				"look_at_target",
+				"look_at_target_ui",
+				"look_at_target_default",
+				"look_at_target_gliding",
+				"look_at_target_swimming",
+				"look_at_target_inverted",
+				"cape",
+				"move.arms",
+				"move.legs",
+				"swimming",
+				"swimming.legs",
+				"riding.arms",
+				"riding.legs",
+				"holding",
+				"brandish_spear",
+				"charging",
+				"attack.positions",
+				"attack.rotations",
+				"sneaking",
+				"bob",
+				"damage_nearby_mobs",
+				"bow_and_arrow",
+				"use_item_progress",
+				"skeleton_attack",
+				"sleeping",
+				"first_person_base_pose",
+				"first_person_empty_hand",
+				"first_person_swap_item",
+				"first_person_attack_controller",
+				"first_person_attack_rotation",
+				"first_person_vr_attack_rotation",
+				"first_person_walk",
+				"first_person_map_controller",
+				"first_person_map_hold",
+				"first_person_map_hold_attack",
+				"first_person_map_hold_off_hand",
+				"first_person_map_hold_main_hand",
+				"first_person_crossbow_equipped",
+				"third_person_crossbow_equipped",
+				"third_person_bow_equipped",
+				"crossbow_hold",
+				"crossbow_controller",
+				"shield_block_main_hand",
+				"shield_block_off_hand",
+				"blink",
+				"die",
+				"healing",
+				"sword_attack"
+			],
+			"sound_references": [],
+			"texture_references": [
+				"default",
+				"cape"
+			],
+			"material_references": [
+				"default",
+				"cape",
+				"animated"
+			],
+			"geometry_references": [
+				"default",
+				"cape"
+			],
+			"geometry_identifiers": [
+				"geometry.humanoid.custom",
+				"geometry.cape"
+			]
+		}
+	},
+	"rp_animation_controller": {
+		"RP/animation_controllers/player.animation_controllers.json": {
+			"ids": [
+				"controller.animation.player.crossbow",
+				"controller.animation.player.first_person_attack",
+				"controller.animation.player.first_person_map",
+				"controller.animation.player.hudplayer",
+				"controller.animation.player.root"
+			]
+		}
+	}
+}

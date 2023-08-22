@@ -1,0 +1,35 @@
+{
+	"BP/animation_controllers/rec.json": {
+		"data": {}
+	},
+	"BP/entities/player.json": {
+		"data": {}
+	},
+	"BP/animation_controllers/always.json": {
+		"data": {}
+	},
+	"RP/entity/player.entity.json": {
+		"data": {}
+	},
+	"BP/animation_controllers/bridge/commands_player.json": {
+		"data": {}
+	},
+	"RP/animation_controllers/player.animation_controllers.json": {
+		"data": {}
+	},
+	"BP/animation_controllers/alive.json": {
+		"data": {}
+	},
+	"BP/texts/languages.json": {
+		"data": {}
+	},
+	"RP/texts/languages.json": {
+		"data": {}
+	},
+	"RP/ui/debug_screen.json": {
+		"data": {}
+	},
+	"BP/animation_controllers/info.json": {
+		"data": {}
+	}
+}

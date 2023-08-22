@@ -1,0 +1,14 @@
+{
+	"file_path": "C:\\Users\\leegm\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\development_behavior_packs\\help other player\\texts\\languages.json",
+	"file_type": "lang_def",
+	"format_version": 1,
+	"file_uuid": "960e1dfc_1fc9_42fe_b2f9_2f32b1283464",
+	"file_version": 0,
+	"cache_content": {
+		"is_minified": true,
+		"children": [
+			"en_US",
+			"ko_KR"
+		]
+	}
+}

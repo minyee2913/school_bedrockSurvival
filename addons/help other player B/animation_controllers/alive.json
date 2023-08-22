@@ -1,0 +1,31 @@
+//bridge-file-version: #0
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.alive": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"on_entry": [
+						"/tag @s remove alive"
+					],
+					"transitions": [
+						{
+							"alive": "query.is_alive"
+						}
+					]
+				},
+				"alive": {
+					"transitions": [
+						{
+							"default": "!(query.is_alive)"
+						}
+					],
+					"on_entry": [
+						"/tag @s add alive"
+					]
+				}
+			}
+		}
+	}
+}

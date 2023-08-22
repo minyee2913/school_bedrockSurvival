@@ -1,0 +1,165 @@
+{
+	"file_path": "C:\\Users\\leegm\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\development_behavior_packs\\help other player\\animation_controllers\\info.json",
+	"file_type": "animation_controller",
+	"format_version": 1,
+	"file_uuid": "f6bf8d31_fd91_4168_8221_6d303cf10632",
+	"file_version": 4,
+	"cache_content": {
+		"children": [
+			{
+				"data": "1.10.0",
+				"key": "format_version"
+			},
+			{
+				"open": {
+					"format_version": "1.10.0",
+					"animation_controllers": {
+						"controller.animation.info": {
+							"initial_state": "default",
+							"states": {
+								"default": {
+									"transitions": [
+										{
+											"a": "query.is_moving"
+										}
+									]
+								},
+								"a": {
+									"on_entry": [
+										"/function info"
+									]
+								}
+							}
+						}
+					}
+				},
+				"key": "animation_controllers",
+				"children": [
+					{
+						"open": {
+							"controller.animation.info": {
+								"initial_state": "default",
+								"states": {
+									"default": {
+										"transitions": [
+											{
+												"a": "query.is_moving"
+											}
+										]
+									},
+									"a": {
+										"on_entry": [
+											"/function info"
+										]
+									}
+								}
+							}
+						},
+						"key": "controller.animation.info",
+						"children": [
+							{
+								"data": "default",
+								"key": "initial_state"
+							},
+							{
+								"open": {
+									"initial_state": "default",
+									"states": {
+										"default": {
+											"transitions": [
+												{
+													"a": "query.is_moving"
+												}
+											]
+										},
+										"a": {
+											"on_entry": [
+												"/function info"
+											]
+										}
+									}
+								},
+								"key": "states",
+								"children": [
+									{
+										"open": {
+											"default": {
+												"transitions": [
+													{
+														"a": "query.is_moving"
+													}
+												]
+											},
+											"a": {
+												"on_entry": [
+													"/function info"
+												]
+											}
+										},
+										"key": "default",
+										"children": [
+											{
+												"open": {
+													"transitions": [
+														{
+															"a": "query.is_moving"
+														}
+													]
+												},
+												"key": "transitions",
+												"children": [
+													{
+														"open": [
+															{
+																"a": "query.is_moving"
+															}
+														],
+														"is_minified": true,
+														"children": {
+															"a": "query.is_moving"
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"open": {
+											"default": {
+												"transitions": [
+													{
+														"a": "query.is_moving"
+													}
+												]
+											},
+											"a": {
+												"on_entry": [
+													"/function info"
+												]
+											}
+										},
+										"key": "a",
+										"children": [
+											{
+												"open": {
+													"on_entry": [
+														"/function info"
+													]
+												},
+												"key": "on_entry",
+												"is_minified": true,
+												"children": [
+													"/function info"
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

@@ -87,7 +87,7 @@ events.itemUse.on((ev)=>{
     ev.player.runCommand("playsound random.explode @a[r=20] ~ ~ ~ 1 1.5");
 
     let stop = false;
-    asLine(ev.player.getPosition(), [targetPos], 150, 1, 1, 0, (x, y, z)=>{
+    asLine(ev.player.getPosition(), [targetPos], 200, 1, 1, 0, (x, y, z)=>{
         if (!IsSafe(ev.player)) return;
         if (stop) return;
 
@@ -98,7 +98,7 @@ events.itemUse.on((ev)=>{
         }
 
         ev.player.runCommand(`particle minecraft:basic_crit_particle ${x} ${y} ${z}`);
-        const result = ev.player.runCommand(`damage @e[r=1.5,name=!"${playerName}",x=${x},y=${y},z=${z}] ${gun.damage} projectile entity @s`);
+        const result = ev.player.runCommand(`damage @e[r=1.5,name=!"${playerName}",x=${x},y=${y},z=${z},c=1] ${gun.damage} projectile entity @s`);
 
         if (result.result === 1) {
             stop = true;
