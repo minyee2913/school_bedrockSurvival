@@ -86,6 +86,10 @@ events.itemUse.on((ev)=>{
 
     ev.player.runCommand("playsound random.explode @a[r=20] ~ ~ ~ 1 1.5");
 
+    ev.itemStack.setDamageValue(ev.itemStack.getDamageValue() - 1);
+
+    ev.player.sendInventory();
+
     let stop = false;
     asLine(ev.player.getPosition(), [targetPos], 200, 1, 1, 0, (x, y, z)=>{
         if (!IsSafe(ev.player)) return;
