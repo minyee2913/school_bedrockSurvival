@@ -84,6 +84,8 @@ events.itemUse.on((ev)=>{
 
     const targetPos = calcFacingPos(ev.player, gun.range);
 
+    ev.player.runCommand("playsound random.explode @a[r=20] ~ ~ ~ 1 1.5");
+
     let stop = false;
     asLine(ev.player.getPosition(), [targetPos], 150, 1, 1, 0, (x, y, z)=>{
         if (!IsSafe(ev.player)) return;
@@ -96,11 +98,10 @@ events.itemUse.on((ev)=>{
         }
 
         ev.player.runCommand(`particle minecraft:basic_crit_particle ${x} ${y} ${z}`);
-        ev.player.runCommand(`tag @e[r=1.5,name=!"${playerName}",x=${x},y=${y},z=${z}] add shoot${playerName.replace(" ", "_")}`);
-    }, ()=>{
-        if (!IsSafe(ev.player)) return;
+        const result = ev.player.runCommand(`damage @e[r=1.5,name=!"${playerName}",x=${x},y=${y},z=${z}] ${gun.damage} projectile entity @s`);
 
-        ev.player.runCommand(`damage @e[tag=shoot${playerName.replace(" ", "_")}] ${gun.damage} projectile entity @s`);
-        ev.player.runCommand(`tag @e[tag=shoot${playerName.replace(" ", "_")}] remove shoot${playerName.replace(" ", "_")}`);
-    });
+        if (result.result === 1) {
+            stop = true;
+        }
+    }, ()=>{});
 });
