@@ -14,6 +14,7 @@ events.playerJoin.on((ev)=>{
 });
 
 events.playerRespawn.on((ev)=>{
+    ev.player.runCommand("replaceitem entity @s slot.hotbar 0 iron_axe");
     applyDash(ev.player);
     applyMenu(ev.player);
 });
