@@ -109,7 +109,7 @@ events.levelTick.on(ev=>{
             const sidebar = Sidebar.get(p);
 
             sidebar.removeElement(1);
-            sidebar.setElement(0, 0, `§6핑§f: ${ping.GetAveragePing(p.getNetworkIdentifier())}`);
+            sidebar.setElement(0, 0, `§6핑§f: ${bedrockServer.rakPeer.GetAveragePing(p.getNetworkIdentifier().address)}`);
             sidebar.setElement(1, 1, `§f현재 시간: §7${hour}시 ${min}분`);
             sidebar.setElement(2, 2, `§a`);
             sidebar.setElement(3, 3, `§a(${bedrockServer.level.getActivePlayerCount()} / 20) online`);
