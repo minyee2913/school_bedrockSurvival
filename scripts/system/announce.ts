@@ -2,7 +2,6 @@ import { bedrockServer } from "bdsx/launcher";
 import * as _ from "lodash";
 import { events } from "bdsx/event";
 import { Sidebar } from "../api/sidebar";
-const ping = require("@bdsx/ping/src/pings").Ping;
 
 interface timeData {
     time: number;
