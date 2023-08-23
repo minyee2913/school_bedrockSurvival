@@ -2,6 +2,7 @@ import { bedrockServer } from "bdsx/launcher";
 import * as _ from "lodash";
 import { events } from "bdsx/event";
 import { Sidebar } from "../api/sidebar";
+const ping = require("@bdsx/ping/src/pings").Ping;
 
 interface timeData {
     time: number;
@@ -78,6 +79,7 @@ for (let i = 0; i < 2; i++) {
 
 events.playerJoin.on((ev)=>{
     Sidebar.get(ev.player)
+    .setElement(0, 0, `§7`)
     .setElement(1, 1, `§7`)
     .display();
 });
@@ -107,6 +109,7 @@ events.levelTick.on(ev=>{
             const sidebar = Sidebar.get(p);
 
             sidebar.removeElement(1);
+            sidebar.setElement(0, 0, `§6핑§f: ${ping.GetAveragePing(p.getNetworkIdentifier())}`);
             sidebar.setElement(1, 1, `§f현재 시간: §7${hour}시 ${min}분`);
             sidebar.setElement(2, 2, `§a`);
             sidebar.setElement(3, 3, `§a(${bedrockServer.level.getActivePlayerCount()} / 20) online`);
@@ -121,6 +124,7 @@ events.levelTick.on(ev=>{
             if (v.time !== hour || v.minute !== min) return;
 
             _(bedrockServer.level.getPlayers()).forEach((p)=>{
+                p.sendToastRequest("§7시간표 알림", `§f${v.display}`);
                 p.sendToastRequest("§7시간표 알림", `§f${v.display}`);
             });
 
