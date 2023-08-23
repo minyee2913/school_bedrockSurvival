@@ -2,6 +2,8 @@ import { ServerPlayer } from "bdsx/bds/player";
 import { Database } from "../api/database";
 import { Form } from "bdsx/bds/form";
 import { v4 as uuidv4 } from "uuid";
+import { bedrockServer } from "bdsx/launcher";
+import _ = require("lodash");
 
 interface Comment {
     writer: string;
@@ -103,6 +105,10 @@ export async function writeFeed(player: ServerPlayer): Promise<void> {
 
     player.sendMessage("§a작성완료!");
     player.runCommand("playsound random.levelup @s ~ ~ ~");
+
+    _(bedrockServer.level.getPlayers()).forEach((p)=>{
+        p.sendToastRequest("§a피드가 올라왔습니다.", `§f${data.title}`);
+    });
 
     FeedScreen(player);
 }
