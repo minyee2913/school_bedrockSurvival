@@ -47,7 +47,7 @@ for (let i = 0; i < 4; i++) {
 timeset.push(
     {
         time: 12,
-        minute: 30,
+        minute: 31,
         display: "점심 시간이 시작되었습니다.",
         sign: "점심 시간"
     },
